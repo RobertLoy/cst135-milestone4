@@ -9,6 +9,12 @@ public class Donut extends BakedGood{
 		filling = new Filling("strawberry","jelly");
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Donut(int temperature, int calories, String flavor, int id, Filling filling) {
+		super(temperature, calories, flavor, id);
+		this.filling =  filling;
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public String toString() {

@@ -69,7 +69,12 @@ public class Bakery {
 		System.out.println("===========");
 		System.out.println(" DELETE MENU ");
 		System.out.println("===========");
-		System.out.println("Deleting a baked good!");
+		viewAllBakedGoods();
+		System.out.println("===========");
+		System.out.println("What item to delete? ");
+		int item = sc.nextInt();
+		sc.nextLine();
+		bakedGoods.remove(item - 1);
 
 	}
 
@@ -77,7 +82,27 @@ public class Bakery {
 		System.out.println("===========");
 		System.out.println(" UPDATE MENU ");
 		System.out.println("===========");
-		System.out.println("Updating a baked good!");
+		viewAllBakedGoods();
+		System.out.println("===========");
+		System.out.println("What item to update? ");
+		int item = sc.nextInt();
+		sc.nextLine();
+		
+		if (bakedGoods.get(item) instanceof Bread) {
+			updateBread(item);
+		}
+		else if (bakedGoods.get(item) instanceof Donut) {
+			System.out.println("Updating a Donut");
+			//updateDonut(item);
+		}
+		else if (bakedGoods.get(item) instanceof Cookie) {
+			System.out.println("Updating a Cookie");
+			//updateDonut(item);
+		}
+		else {
+			System.out.println("I do not recognize that baked good");
+		}
+		updateBread(item);
 
 	}
 
@@ -88,13 +113,79 @@ public class Bakery {
 		System.out.println("Adding Cookie!");
 
 	}
+	
+	private void updateBread(int item) {
+		System.out.println("===========");
+		System.out.println(" UPDATE MENU ");
+		System.out.println("===========");
+		//public Bread(int temperature, int calories, String flavor, int id, String grain, String style)
+		
+		System.out.println("What temperature to bake at? [ " + bakedGoods.get(item - 1).getTemperature() + "]");
+		int temp = sc.nextInt();
+		sc.nextLine();
+		bakedGoods.get(item - 1).setTemperature(temp);
+		
+		System.out.println("How many calories? [ " + bakedGoods.get(item - 1).getCalories() + "]");
+		int calories = sc.nextInt();
+		sc.nextLine();
+		bakedGoods.get(item - 1).setCalories(calories);
+		
+		System.out.println("What flavor? [ " + bakedGoods.get(item - 1).getFlavor() + "]");
+		String flavor = sc.nextLine();
+		bakedGoods.get(item - 1).setFlavor(flavor);
+		
+		System.out.println("What id number? [ " + bakedGoods.get(item - 1).getCalories() + "]");
+		int id = sc.nextInt();
+		sc.nextLine();
+		bakedGoods.get(item - 1).setId(id);
+
+		System.out.println("What grain? [ " + ((Bread)bakedGoods.get(item - 1)).getGrain() + "]");
+		String grain = sc.nextLine();
+		((Bread)bakedGoods.get(item - 1)).setGrain(grain);
+		
+		System.out.println("What style? [ " + ((Bread)bakedGoods.get(item - 1)).getStyle() + "]");
+		String style = sc.nextLine();
+		((Bread)bakedGoods.get(item - 1)).setStyle(style);
+		
+	}
 
 	private void addDonut() {
 		System.out.println("===========");
 		System.out.println(" CREATE MENU ");
 		System.out.println("===========");
-		System.out.println("Adding Donut!");
 
+		System.out.println("What temperature to bake at? ");
+		int temp = sc.nextInt();
+		sc.nextLine();
+		
+		System.out.println("How many calories? ");
+		int calories = sc.nextInt();
+		sc.nextLine();		
+		
+		System.out.println("What flavor? ");
+		String flavor = sc.nextLine();
+		
+		System.out.println("What id number? ");
+		int id = sc.nextInt();
+		sc.nextLine();	
+
+		System.out.println("Do you want to add a filling? [Yes, No]");	 //yes
+		String needFilling = sc.nextLine().toUpperCase();
+		if (needFilling.equals("YES") || needFilling.equals("Y") ) {
+			
+			System.out.println("What flavor? ");
+			String flav = sc.nextLine();
+			
+			System.out.println("What type? ");
+			String type = sc.nextLine();
+			
+			Filling filling = new Filling(flav, type);
+			
+			bakedGoods.add(new Donut(temp, calories, flavor, id, filling));
+		}
+		else {
+			bakedGoods.add(new Donut(temp, calories, flavor, id));
+		}	
 	}
 
 	private void addBread() {
@@ -128,12 +219,14 @@ public class Bakery {
 	}
 
 	public void viewAllBakedGoods() {
-		System.out.println("===========");
-		System.out.println(" READ MENU ");
-		System.out.println("===========");
+//		System.out.println("===========");
+//		System.out.println(" READ MENU ");
+//		System.out.println("===========");
 
+		int counter = 1;
+		
 		for (BakedGood bg : bakedGoods) {
-			System.out.println(bg.toString());
+			System.out.println(counter++ + ". " + bg.toString());
 		}
 	}
 
