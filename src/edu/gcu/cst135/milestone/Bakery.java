@@ -26,10 +26,13 @@ public class Bakery {
 			System.out.println(" 1. Add a Bread (C)");	
 			System.out.println(" 2. Add a Donut (C)");		
 			System.out.println(" 3. Add a Cookie (C)");		
-			System.out.println(" 4. List all Baked Goods (R)");				
-			System.out.println(" 5. Update a Baked Good (U)");	
-			System.out.println(" 6. Delete a Baked Good (D)");	
-			System.out.println(" 7. Exit");		
+			System.out.println(" 4. List all Baked Goods (R)");	
+			System.out.println(" 5. List details of a Baked Good (R)");	
+			System.out.println(" 6. Update a Baked Good (U)");	
+			System.out.println(" 7. Delete a Baked Good (D)");	
+			System.out.println(" 8. Search for a Baked Good by Flavor (R)");	
+			System.out.println(" 9. Sort Baked Goods by Calories(R)");	
+			System.out.println(" 0. Exit");		
 			System.out.println("===========");
 			System.out.println("What options to perform? ");
 			int option = sc.nextInt();
@@ -49,12 +52,21 @@ public class Bakery {
 				viewAllBakedGoods(); 
 				break;
 			case 5:
+				detailsBakedGood();
+				break;	
+			case 6:
 				updateBakedGood();
 				break;
-			case 6:
+			case 7:
 				deleteBakedGood();
 				break;
-			case 7:
+			case 8:
+				searchBakedGood();
+				break;
+			case 9:
+				sortBakedGood();
+				break;	
+			case 0:
 				System.out.println("Thank you for visting our bakery");
 				System.exit(0);
 				break;
@@ -63,6 +75,59 @@ public class Bakery {
 			}
 		}while (true);
 
+	}
+
+	private void detailsBakedGood() {
+		System.out.println("===========");
+		System.out.println(" LIST DETAILS ");
+		System.out.println("===========");
+		viewAllBakedGoods(); 
+		System.out.println("What item to see details? ");
+		int item = sc.nextInt();
+		sc.nextLine();
+		System.out.println("FLAVOR: \t" + bakedGoods.get(item - 1).getFlavor());
+		System.out.println("CALORIES: \t" + bakedGoods.get(item - 1).getCalories());
+		System.out.println("TEMPERATURE: \t" + bakedGoods.get(item - 1).getTemperature());
+		System.out.println("ID: \t" + bakedGoods.get(item - 1).getId());
+		if (bakedGoods.get(item - 1) instanceof Bread) {
+			System.out.println("GRAIN: \t" + ((Bread)bakedGoods.get(item - 1)).getGrain());
+			System.out.println("STYLE: \t" + ((Bread)bakedGoods.get(item - 1)).getStyle());
+		}
+		else if (bakedGoods.get(item - 1) instanceof Donut) {
+			System.out.println("FILLING");
+			System.out.println("TYPE: \t" + ((Donut)bakedGoods.get(item - 1)).getFilling().getType());
+			System.out.println("FLAVOR: \t" + ((Donut)bakedGoods.get(item - 1)).getFilling().getFlavor());
+		}
+		else if (bakedGoods.get(item - 1) instanceof Cookie) {
+			System.out.println("TOPPING: \t" + ((Cookie)bakedGoods.get(item - 1)).getTopping());
+		}
+		
+	}
+
+	private void sortBakedGood() {
+		System.out.println("===========");
+		System.out.println(" SORT LIST ");
+		System.out.println("===========");
+		ComparatorCalories cc = new ComparatorCalories();
+		bakedGoods.sort(cc);
+		viewAllBakedGoods(); 
+		
+	}
+
+	private void searchBakedGood() {
+		System.out.println("===========");
+		System.out.println(" SEARCH LIST ");
+		System.out.println("===========");
+		System.out.println("What do you want to search for? ");
+		String search = sc.nextLine();
+		
+		int counter = 1;
+		
+		for (BakedGood bg : bakedGoods) {
+			if (bg.getFlavor().toUpperCase().contains(search.toUpperCase()))
+				System.out.println(counter++ + ". " + bg.toString());
+		}
+		
 	}
 
 	private void deleteBakedGood() {

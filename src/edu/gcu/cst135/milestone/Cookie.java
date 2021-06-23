@@ -4,6 +4,14 @@ public class Cookie extends BakedGood {
 
 	private Topping topping;
 
+	public Topping getTopping() {
+		return topping;
+	}
+
+	public void setTopping(Topping topping) {
+		this.topping = topping;
+	}
+
 	public Cookie(int temperature, int calories, String flavor, int id) {
 		super(temperature, calories, flavor, id);
 		topping = new Topping("chocolate", "icing");

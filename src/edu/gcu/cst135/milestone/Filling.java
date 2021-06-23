@@ -16,6 +16,22 @@ public class Filling {
 		return "Filling [flavor=" + flavor + ", type=" + type + "]";
 	}
 
+	public String getFlavor() {
+		return flavor;
+	}
+
+	public void setFlavor(String flavor) {
+		this.flavor = flavor;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	
 	
 }
