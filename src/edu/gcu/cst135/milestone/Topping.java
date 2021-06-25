@@ -1,6 +1,8 @@
 package edu.gcu.cst135.milestone;
 
-public class Topping {
+import java.io.Serializable;
+
+public class Topping  implements Serializable {
 	
 	private String flavor;
 	private String type;

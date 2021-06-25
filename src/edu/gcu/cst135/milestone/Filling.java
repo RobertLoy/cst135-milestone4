@@ -1,6 +1,8 @@
 package edu.gcu.cst135.milestone;
 
-public class Filling {
+import java.io.Serializable;
+
+public class Filling  implements Serializable {
 	
 	private String flavor;
 	private String type;

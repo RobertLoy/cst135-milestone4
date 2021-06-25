@@ -1,11 +1,11 @@
 package edu.gcu.cst135.milestone;
 
-public class Bread extends BakedGood {
+import java.io.Serializable;
+
+public class Bread extends BakedGood  implements Serializable {
 
 	private String grain;
-	private String style;
-	
-	
+	private String style;	
 	
 	public String getGrain() {
 		return grain;

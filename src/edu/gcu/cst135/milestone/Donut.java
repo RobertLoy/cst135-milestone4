@@ -1,6 +1,8 @@
 package edu.gcu.cst135.milestone;
 
-public class Donut extends BakedGood{
+import java.io.Serializable;
+
+public class Donut extends BakedGood  implements Serializable{
 
 	private Filling filling;
 

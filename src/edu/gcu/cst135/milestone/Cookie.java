@@ -1,6 +1,8 @@
 package edu.gcu.cst135.milestone;
 
-public class Cookie extends BakedGood {
+import java.io.Serializable;
+
+public class Cookie extends BakedGood  implements Serializable{
 
 	private Topping topping;
 

@@ -10,12 +10,15 @@ public class Bakery {
 	Scanner sc = new Scanner(System.in);
 
 	public void open() {
-		bakedGoods.add(new Bread(325, 4000, "white", 100, "wheat", "loaf"));
-		bakedGoods.add(new Bread(325, 4000, "white", 100, "wheat", "loaf"));
-		bakedGoods.add(new Donut(325, 250, "chocolate", 102));
-		bakedGoods.add(new Cookie(375, 175, "peanut butter", 103));
+		
+//		bakedGoods.add(new Bread(325, 4000, "white", 100, "wheat", "loaf"));
+//		bakedGoods.add(new Bread(325, 4000, "white", 100, "wheat", "loaf"));
+//		bakedGoods.add(new Donut(325, 250, "chocolate", 102));
+//		bakedGoods.add(new Cookie(375, 175, "peanut butter", 103));
 
+		bakedGoods = DataService.read();
 		menu();
+
 	}
 
 	public void menu() {
@@ -68,6 +71,7 @@ public class Bakery {
 				break;	
 			case 0:
 				System.out.println("Thank you for visting our bakery");
+				DataService.write(bakedGoods);
 				System.exit(0);
 				break;
 			default:

@@ -1,6 +1,8 @@
 package edu.gcu.cst135.milestone;
 
-public class BakedGood {
+import java.io.Serializable;
+
+public class BakedGood implements Serializable {
 	
 	private int temperature;
 	private int calories;
